@@ -1,0 +1,8 @@
+household_power_consumption <- read.csv("C:/Users/hryut/OneDrive/Documents/R Projects/Coursera-DS-4-WK1/household_power_consumption.txt", sep=";", na.strings="?")
+household_power_consumption$Date <- as.Date(household_power_consumption$Date, "%d/%m/%Y")
+x <-paste(household_power_consumption$Date, household_power_consumption$Time)
+household_power_consumption$DateTime <- strptime(x, "%Y-%m-%d %T")
+d <- subset(household_power_consumption, household_power_consumption$Date == "2007-02-01" | household_power_consumption$Date == "2007-02-02")
+hist(d$Global_active_power, main="Global Active Power", xlab="Global Active Power (kw)", col = "red")
+dev.copy(png, file="plot1.png", width=480,height=480, type="windows")
+dev.off()
